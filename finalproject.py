@@ -298,6 +298,10 @@ def editcollege(college_id):
     session = DBSession()
     editedcollege = session.query(
         College).filter_by(id=college_id).one()
+    creator = getUserInfo(editedcollege.user_id)
+    user = getUserInfo(login_session['user_id'])
+    print creator.id
+    print login_session['user_id']
     if creator.id != login_session['user_id']:
         flash("You cannot edit this college. This college belongs to % s"
               % creator.name)
@@ -321,6 +325,8 @@ def deletecollege(college_id):
     session = DBSession()
     collegeToDelete = session.query(
         College).filter_by(id=college_id).one()
+    creator = getUserInfo(collegeToDelete.user_id)
+    user = getUserInfo(login_session['user_id'])
     if creator.id != login_session['user_id']:
         flash("You cannot delete this college. This college belongs to %s"
               % creator.name)
@@ -379,6 +385,8 @@ def editCourseName(college_id, course_id):
     session = DBSession()
     editedCourse = session.query(CourseName).filter_by(id=course_id).one()
     college = session.query(College).filter_by(id=college_id).one()
+    creator = getUserInfo(editedCourse.user_id)
+    user = getUserInfo(login_session['user_id'])
     if creator.id != login_session['user_id']:
         flash("You cannot edit this college. This college belongs to %s"
               % creator.name)
@@ -410,6 +418,8 @@ def deleteCourseName(college_id, course_id):
     session = DBSession()
     college = session.query(College).filter_by(id=college_id).one()
     courseToDelete = session.query(CourseName).filter_by(id=course_id).one()
+    creator = getUserInfo(courseToDelete.user_id)
+    user = getUserInfo(login_session['user_id'])
     if creator.id != login_session['user_id']:
         flash("You cannot delete this college. This college belongs to %s"
               % creator.name)
@@ -429,4 +439,3 @@ if __name__ == '__main__':
     app.secret_key = 'super_secret_key'
     app.debug = True
     app.run(host='0.0.0.0', port=5000)
-
