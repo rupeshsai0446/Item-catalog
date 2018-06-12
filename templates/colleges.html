@@ -1,0 +1,38 @@
+
+{% extends "main.html" %}
+{% block content %}
+{% include "header.html" %}
+<html>
+
+
+<head>
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename='styles.css') }}">
+	</head>
+
+
+<body>
+<div class = 'pane'>
+<h1>Colleges</h1>
+
+<a href="{{url_for('newcollege')}}" > <h3> Create a New College </h3> </a>
+
+{% for college in colleges %}
+
+
+
+<a href = "{{url_for('collegeinfo', college_id = college.id)}}"> <p>{{college.name}}</p></a>
+
+<p><a href = "{{url_for('editcollege',college_id = college.id)}}">Edit college</a></p>
+
+<p> <a href = "{{url_for('deletecollege',college_id = college.id)}}">Delete college</a> </p>
+
+
+
+
+{% endfor %}
+
+</div>
+</body>
+
+</html>
+{% endblock %}

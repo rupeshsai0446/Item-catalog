@@ -1,0 +1,53 @@
+<html>
+	
+<head>
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename='styles.css') }}">
+	</head>
+	<body>
+		<div class = 'pane'>
+		<h1>{{ college.name }}</h1>
+		
+		{% with messages = get_flashed_messages() %}
+      {% if messages %}
+          
+        <ul>
+        {% for message in messages %}
+            <li> <strong> {{ message }} </strong> </li>
+        {% endfor %}
+        </ul>
+        {% endif %}
+    {% endwith %}
+
+    {% if courses !=[] %}
+
+		<a href = "{{url_for('newCourseName', college_id = college.id )}}">Create New Course</a>
+	</br></br>
+
+
+		{% for i in courses %}
+
+		<h2>{{i.name}}</h2>
+	
+
+		<p>{{i.description}}</p>
+	
+
+		<p>{{i.fee}}</p>
+	
+		<a href='{{url_for('editCourseName', college_id = college.id, course_id=i.id ) }}' >Edit</a>
+	</br>
+	<a href='{{url_for('deleteCourseName', college_id = college.id, course_id=i.id ) }}' >Delete</a>
+</br>
+</br>{% endfor %}
+
+		{% endif %}
+		
+		
+
+		</br></br>
+
+
+</div>
+	</body>
+
+</html>

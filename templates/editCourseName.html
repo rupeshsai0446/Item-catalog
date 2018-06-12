@@ -1,0 +1,65 @@
+<html>
+
+<head>
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename='styles.css') }}">
+	</head>
+
+<body><h1> Edit Course Name </h1>
+
+<form action="#" method = 'post'>
+
+
+	<p>Name:</p>
+		<input type ='text' size='30' name='name' placeholder = '{{course.name }}'>
+	<p>Description:</p>
+		<input type ='text' size='30' name='description' placeholder = '{{course.description}}'>
+	<p>fee:</p>
+		<input type ='text' size='30' name='fee' placeholder = '{{course.fee}}'>
+
+	{% if course.name == 'ECE' %}
+		<dd><input type ='radio' name='course' value='ECE'checked >ECE</dd>
+	{%else%}
+	<dd><input type ='radio' name='course' value='ECE' >ECE</dd>
+    {% endif %}
+
+    {% if course.name == 'CSE' %}
+		<dd><input type ='radio' name='course' value='CSE'checked >CSE</dd>
+	{%else%}
+	<dd><input type ='radio' name='course' value='CSE' >CSE</dd>
+    {% endif %}
+
+
+	{% if course.name == 'EEE' %}
+		<dd><input type ='radio' name='course' value='EEE'checked >EEE</dd>
+	{%else%}
+	<dd><input type ='radio' name='course' value='EEE' >EEE</dd>
+    {% endif %}
+
+	{% if course.name == 'ME' %}
+		<dd><input type ='radio' name='course' value='ME'checked >ME</dd>
+	{%else%}
+	<dd><input type ='radio' name='course' value='ME' >ME</dd>
+    {% endif %}
+
+    {% if course.name == 'CE' %}
+		<dd><input type ='radio' name='course' value='CE'checked >CE</dd>
+	{%else%}
+	<dd><input type ='radio' name='course' value='CE' >CE</dd>
+    {% endif %}
+
+    {% if course.name == 'IT' %}
+		<dd><input type ='radio' name='course' value='IT'checked >IT</dd>
+	{%else%}
+	<dd><input type ='radio' name='course' value='IT' >IT</dd>
+    {% endif %}
+
+
+<input type='submit' value='Edit'>
+
+
+<a href = '#'> Cancel </a>
+
+
+</form>
+</body>
+</html>
