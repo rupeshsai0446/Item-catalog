@@ -220,11 +220,11 @@ def logout():
 @app.route('/college/<int:college_id>/course/JSON')
 def colleginfoJSON(college_id):
     session = DBSession()
-    college = session.query(college).filter_by(id=college_id).one()
+    college = session.query(College).filter_by(id=college_id).one()
     courses = session.query(CourseName).filter_by(
         college_id=college_id).all()
     session.close()
-    return jsonify(CourseNames=[i.serialize for i in items])
+    return jsonify(CourseNames=[i.serialize for i in courses])
 
 
 @app.route('/college/<int:college_id>/course/<int:course_id>/JSON')
@@ -238,7 +238,7 @@ def CourseinfoJSON(college_id, course_id):
 @app.route('/college/JSON')
 def collegesJSON():
     session = DBSession()
-    colleges = session.query(college).all()
+    colleges = session.query(College).all()
     session.close()
     return jsonify(colleges=[r.serialize for r in colleges])
 
